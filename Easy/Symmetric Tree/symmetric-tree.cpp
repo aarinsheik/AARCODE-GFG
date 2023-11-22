@@ -104,7 +104,7 @@ class Solution{
     
     void ino_ryt(Node* r , vector<int> &v ){
         
-        if(!r) return ;
+        if( !r ) return ;
         
         if(r->left){ 
             v.push_back(r->left->data);
@@ -152,11 +152,12 @@ class Solution{
         ino_left(root->left , left );
         ino_ryt(root->right , ryt );
 
-	    if(ryt!=left) return false; 
+	    if(ryt!=left) return 0; 
 	    
-	    return true;
+	    return 1;
     }
 };
+
 
 //{ Driver Code Starts.
 
