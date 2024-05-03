@@ -98,7 +98,7 @@ class Solution
     {
         //Your code here
         vector<int> v ;
-        queue<Node*> q;
+        queue<Node*>  q;
         
         if (root) {
             q.push(root);
