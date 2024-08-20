@@ -99,7 +99,7 @@ class Solution {
   
     int BFS( Node* tar , map<Node*,int> &vis , map<Node*,Node*> &par ){
         
-        if(!tar or vis[tar]){
+        if(!tar or vis[tar] ){
             return 0;
         }
 
@@ -158,6 +158,7 @@ class Solution {
         
     }
 };
+
 
 //{ Driver Code Starts.
 
