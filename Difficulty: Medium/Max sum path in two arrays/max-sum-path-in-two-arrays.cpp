@@ -7,12 +7,12 @@ using namespace std;
 class Solution {
   public:
     
-    int recur(int ti , int ni , vector<int> &a1 , vector<int> &a2  , map<pair<bool,int>,int> &dp ,bool isa1 ){
+    int recur(int ti , int ni , vector<int> &a1 , vector<int> &a2  , map<pair<vector<int>*,int>,int> &dp ){
         
         if(ti==a1.size())
             return 0;
         
-        pair<bool,int> pr(isa1,ti); 
+        pair<vector<int>*,int> pr(&a1,ti); 
         
         if( dp[pr] )
             return dp[pr];
@@ -23,24 +23,22 @@ class Solution {
         }
         
         if(a1[ti]==a2[ni]){
-            int p = recur( ti+1 , ni , a1 , a2 , dp , isa1 )+a1[ti];
-            int q = recur( ni+1 , ti , a2 , a1 , dp , !isa1 )+a2[ni];
+            int p = recur( ti+1 , ni , a1 , a2 , dp )+a1[ti];
+            int q = recur( ni+1 , ti , a2 , a1 , dp )+a2[ni];
             
             return dp[pr] = max(p,q);
         }
         else{
-            return dp[pr] = recur(ti+1 , ni , a1 , a2 , dp , isa1 )+a1[ti];
+            return dp[pr] = recur(ti+1 , ni , a1 , a2 , dp )+a1[ti];
         }
-        
-        
     }
     
-    int max_path_sum(vector<int> &arr1, vector<int> &arr2) {
+    int maxPathSum(vector<int> &arr1, vector<int> &arr2) {
         // Code here
-        map<pair<bool,int>,int> dp;
+        map<pair<vector<int>*,int>,int> dp;
         
-        int p = recur( 0 , 0 , arr1 , arr2 , dp , true);
-        int q = recur( 0 , 0 , arr2 , arr1 , dp , false);
+        int p = recur( 0 , 0 , arr1 , arr2 , dp );
+        int q = recur( 0 , 0 , arr2 , arr1 , dp );
         
         return max(p,q);
     }
@@ -70,7 +68,7 @@ int main() {
             arr2.push_back(number2);
         }
         Solution ob;
-        long long ans = ob.max_path_sum(arr1, arr2);
+        long long ans = ob.maxPathSum(arr1, arr2);
         cout << ans << endl;
     }
     return 0;
