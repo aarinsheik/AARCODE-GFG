@@ -2,25 +2,25 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+
 // } Driver Code Ends
-class Solution{
+class Solution {
 
-
-	public:
-	vector<int> alternateSort(int arr[], int n)
-	{
-	    // Your code goes here
-	    sort(arr , arr+n );
+  public:
+    vector<int> alternateSort(vector<int>& arr) {
+        // Your code goes here
+        sort(arr.begin() , arr.end() );
+	    int n = arr.size() ;
 	    
 	    int i=0 , j=n-1 , k=0 ;
-	    vector<int> res;
+	    vector<int> res ;
+	    
 	    while(i<=j){
 	        
 	        if(i==j){
 	            res.push_back(arr[i]);
 	            break;
 	        }
-	            
 	            
 	        if(k++%2==0){
 	            res.push_back(arr[j]);
@@ -33,37 +33,34 @@ class Solution{
 	    }
 	    
 	    return res;
-	}
-
+    }
 };
-	
+
 
 //{ Driver Code Starts.
 
-int main() 
-{
-   	
-   	int t;
-    cin >> t;
-    while (t--)
-    {
-    	int n;
-       	
-		cin>>n;
-		int a[n];
-		for(int i=0;i<n;++i)
-			cin>>a[i];
-       
-
-        Solution ob;
-        vector<int> ans = ob.alternateSort(a, n);
-        for(auto i:ans)
-        	cout << i << " ";
-	    cout << "\n";
-	     
+int main() {
+    string ts;
+    getline(cin, ts);
+    int t = stoi(ts);
+    while (t--) {
+        vector<int> arr;
+        string input;
+        getline(cin, input);
+        stringstream ss(input);
+        int number;
+        while (ss >> number) {
+            arr.push_back(number);
+        }
+        Solution obj;
+        vector<int> ans = obj.alternateSort(arr);
+        for (int i = 0; i < ans.size(); i++) {
+            cout << ans[i] << " ";
+        }
+        cout << endl;
+        cout << "~" << endl;
     }
     return 0;
 }
-
 
 // } Driver Code Ends
