@@ -16,6 +16,7 @@ class Solution {
     }
 };
 
+
 //{ Driver Code Starts.
 int main() {
     int t;
@@ -37,6 +38,7 @@ int main() {
             cout << arr[i] << " ";
         }
         cout << endl;
+        cout << "~" << endl;
     }
     return 0;
 }
