@@ -5,54 +5,54 @@ using namespace std;
 
 // } Driver Code Ends
 
-class Solution
-{
-    public:
-    //Function to find the first non-repeating character in a string.
-    char nonrepeatingCharacter(string S)
-    {
-       //Your code here
-       map<char,int> mp;
+class Solution {
+  public:
+    // Function to find the first non-repeating character in a string.
+    char nonRepeatingChar(string &S) {
+        // Your code here
+        map<char,int> mp;
        
-       for(auto i : S){
+        for(auto i : S){
            mp[i]++;
-       }
-       
-       for(auto i : S){
+        }
+        
+        for(auto i : S){
            if(mp[i]==1){
                return i;
            }
-       }
-       
-       return '$';
+        }
+        
+        return '$';
+    
     }
-
 };
 
 //{ Driver Code Starts.
 
 int main() {
-	
-	int T;
-	cin >> T;
-	
-	while(T--)
-	{
-	
-	    string S;
-	    cin >> S;
-	    Solution obj;
-        char ans = obj.nonrepeatingCharacter(S);
-        
-        if(ans != '$')
-	    cout << ans;
-        else cout << "-1";
-            
+
+    int T;
+    cin >> T;
+
+    while (T--) {
+
+        string S;
+        cin >> S;
+        Solution obj;
+        char ans = obj.nonRepeatingChar(S);
+
+        if (ans != '$')
+            cout << ans;
+        else
+            cout << "-1";
+
         cout << endl;
-	    
-	}
-	
-	return 0;
+
+        cout << "~"
+             << "\n";
+    }
+
+    return 0;
 }
 
 // } Driver Code Ends
