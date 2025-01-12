@@ -1,114 +1,64 @@
 //{ Driver Code Starts
-#include<bits/stdc++.h>
+#include <bits/stdc++.h>
 
 using namespace std;
 
 
 // } Driver Code Ends
-class Solution{
-
-    // Function to find the trapped water between the blocks.
-    public:
-    
-    long long trappingWater(int arr[], int n){
+class Solution {
+  public:
+    int maxWater(vector<int> &arr) {
         // code here
+        int n = arr.size() ;
         
-        vector<long long> rt(n,-1) , lt(n,-1);
-        
-        long long mx=-1;
-        
-        for(long long p=0 ; p<n ; p++){
-            
-            if(arr[p]>mx){
-                if(p+1<n and arr[p]==arr[p+1]){
-                    continue;
-                }    
-                mx=arr[p]; 
-            }
-            else{
-                rt[p]=mx;
-            }
-        }
-        
-        mx=-1;
-        
-        for(long long p=n-1 ; p>=0 ; p-- ){
-        
-            if(arr[p]>mx){
-                if(p-1>=0 and arr[p]==arr[p-1]){
-                    continue;
-                }
-               mx=arr[p]; 
-            }
-            else{
-                lt[p]=mx;
-            }
-            
-        }
-        
-        long long i=0;
-        
-        while(i<n){
-            if(rt[i]>0 and lt[i]>0 ){
-                break;
-            }
-            else{
-                i++;
-            }
-        }
-        
-        
-        long long j=n-1;
-        
-        while(j>=0){
-            if(rt[j]>0 and lt[j]>0 ){
-                break;
-            }
-            else{
-                j--;
-            }
-        }
-        
-        long long ans=0;
+        vector<int> p(n,0) , s(n,0) ;
+        int v1 = arr[0] , v2=arr[n-1] ;
         
         for(int i=0 ; i<n ; i++){
-            if(rt[i]>0 and lt[i]>0){
-                ans+= min(rt[i],lt[i]) - arr[i] ;
-            }
+        
+            v1 = max( arr[i] , v1 );
+            p[i] = v1;
+            
+            v2 = max( arr[n-1-i] , v2 );
+            s[n-1-i] = v2;
         }
         
-        return ans;
+        int wat = 0 ;
         
+        for(int i=0 ; i<n ; i++){
+            
+            int mn = min( p[i] , s[i] ) ;
+            wat+=abs(mn-arr[i]) ;
+            
+        }
+        
+        return wat;
     }
-    
 };
 
 //{ Driver Code Starts.
-
-int main(){
-    
+int main() {
     int t;
-    //testcases
     cin >> t;
-    
-    while(t--){
-        int n;
-        
-        //size of array
-        cin >> n;
-        
-        int a[n];
-        
-        //adding elements to the array
-        for(int i =0;i<n;i++){
-            cin >> a[i];            
+    cin.ignore();
+    while (t--) {
+        vector<int> arr;
+        string input;
+
+        // Read first array
+        getline(cin, input);
+        stringstream ss(input);
+        int number;
+        while (ss >> number) {
+            arr.push_back(number);
         }
-        Solution obj;
-        //calling trappingWater() function
-        cout << obj.trappingWater(a, n) << endl;
-        
+
+        Solution ob;
+        int res = ob.maxWater(arr);
+
+        cout << res << endl << "~" << endl;
     }
-    
     return 0;
 }
+
 // } Driver Code Ends
