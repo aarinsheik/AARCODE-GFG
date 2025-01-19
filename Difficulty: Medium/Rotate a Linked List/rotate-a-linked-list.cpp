@@ -24,7 +24,7 @@ void printList(Node* node) {
 
 // } Driver Code Ends
 /*
- 
+
 struct Node {
     int data;
     struct Node *next;
@@ -38,10 +38,16 @@ struct Node {
 
 class Solution {
   public:
-    // Function to rotate a linked list.
     Node* rotate(Node* head, int k) {
         // Your code here
         Node* t=head;
+        
+        int len=0 ;
+        for(Node* a=head ; a!=NULL ; a=a->next ) len++;
+        
+        k = k%len;
+        
+        if(k==0) return head;
         
         while(--k>0)
             t=t->next;
@@ -56,7 +62,6 @@ class Solution {
         t->next=NULL ;
         
         return head;
-        
     }
 };
 
@@ -98,6 +103,7 @@ int main() {
         Solution ob;
         head = ob.rotate(head, k);
         printList(head);
+        cout << "~\n";
     }
     return 1;
 }
